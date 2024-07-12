@@ -51,6 +51,7 @@ public class ProdutosDAO {
     
     public List<ProdutosDTO> listarProdutos(){
         
+        conn = new conectaDAO().connectDB();
         String sql = "SELECT * FROM produtos";
         try {
 
