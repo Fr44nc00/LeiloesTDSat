@@ -60,9 +60,8 @@ public class ProdutosDAO {
             
             List<ProdutosDTO> listaProdutos = new ArrayList<>();
 
-            ProdutosDTO produtos = new ProdutosDTO();
-            
             while(rs.next()){
+                ProdutosDTO produtos = new ProdutosDTO();
                 produtos.setId(rs.getInt("id"));
                 produtos.setNome(rs.getString("nome"));
                 produtos.setValor(rs.getInt("valor"));
