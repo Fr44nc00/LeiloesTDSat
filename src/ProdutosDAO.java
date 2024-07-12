@@ -26,18 +26,17 @@ public class ProdutosDAO {
     public int cadastrarProduto (ProdutosDTO produto){
         
         conn = new conectaDAO().connectDB();
-        PreparedStatement st;
         int status;
         try {
             //preparando a string sql com o código de inserção para o banco de dados
-            st = conn.prepareStatement("INSERT INTO produtos(nome, valor, status)"
+            prep = conn.prepareStatement("INSERT INTO produtos(nome, valor, status)"
                     + "VALUES(?,?,?)");
             //setando os parâmetros
-            st.setString(1, produto.getNome());
-            st.setInt(2, produto.getValor());
-            st.setString(3, produto.getStatus());
+            prep.setString(1, produto.getNome());
+            prep.setInt(2, produto.getValor());
+            prep.setString(3, produto.getStatus());
             //executando a query
-            status = st.executeUpdate();
+            status = prep.executeUpdate();
             //retornando o valor da query
             return status;
         } catch (SQLException ex) {
