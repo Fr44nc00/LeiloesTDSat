@@ -49,9 +49,31 @@ public class ProdutosDAO {
         
     }
     
-    public ArrayList<ProdutosDTO> listarProdutos(){
+    public ProdutosDTO listarProdutos(){
         
-        return listagem;
+        String sql = "SELECT * FROM produtos";
+        try {
+
+            prep = this.conn.prepareStatement(sql);
+            ResultSet rs = prep.executeQuery();
+
+            //declarando a classe como uma variável
+            ProdutosDTO produtos = new ProdutosDTO();
+            
+            rs.next();
+            //salvar dentro do objeto filmes as informações
+            produtos.setId(rs.getInt("id"));
+            produtos.setNome(rs.getString("nome"));
+            produtos.setValor(rs.getInt("valor"));
+            produtos.setStatus(rs.getString("Status"));
+
+            return produtos;
+
+            //tratando o erro, caso ele ocorra
+        } catch (Exception e) {
+            System.out.println("erro: " + e.getMessage());
+            return null;
+        }
     }
     
     
